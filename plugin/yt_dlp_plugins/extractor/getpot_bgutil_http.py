@@ -32,7 +32,9 @@ class BgUtilHTTPPTP(BgUtilPTPBase):
 
     @functools.cached_property
     def _base_url(self):
+        self.logger.warning("######## BGUTIL HTTP _base_url() ########")
         base_url = self._configuration_arg('base_url', default=[None])[0]
+        self.logger.warning(f"######## base_url={base_url} ########")
 
         if base_url:
             return base_url
@@ -96,6 +98,7 @@ class BgUtilHTTPPTP(BgUtilPTPBase):
         return self._server_available or self._last_server_check + 60 < int(time.time())
 
     def _real_request_pot(
+        self.logger.warning("######## ENTERING _real_request_pot ########")
         self,
         request: PoTokenRequest,
     ) -> PoTokenResponse:
