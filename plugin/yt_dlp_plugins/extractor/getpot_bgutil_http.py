@@ -98,10 +98,12 @@ class BgUtilHTTPPTP(BgUtilPTPBase):
         return self._server_available or self._last_server_check + 60 < int(time.time())
 
     def _real_request_pot(
-        self.logger.warning("######## ENTERING _real_request_pot ########")
         self,
         request: PoTokenRequest,
     ) -> PoTokenResponse:
+
+        self.logger.warning("######## ENTERING _real_request_pot ########")
+        
         if not self._check_server_availability(request):
             raise PoTokenProviderRejectedRequest(
                 f'{self.PROVIDER_NAME} server is not available')
